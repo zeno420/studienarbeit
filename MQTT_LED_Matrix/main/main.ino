@@ -1,12 +1,3 @@
-/*
-  ArduinoMqttClient - WiFi Simple Receive Callback
-
-  This example connects to a MQTT broker and subscribes to a single topic.
-  When a message is received it prints the message to the MD_MAX72xx LED Board,
-  it uses the callback functionality of the library.
-
-*/
-
 #include <ArduinoMqttClient.h>
 #include <WiFi.h>
 #include <MD_MAX72xx.h>
