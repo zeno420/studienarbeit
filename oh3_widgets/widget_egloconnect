@@ -1,0 +1,114 @@
+uid: widget_egloconnect
+props:
+  parameters:
+    - description: The title of this widget.
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - context: item
+      description: Power Point of your EgloConnect Thing.
+      label: Power
+      name: power
+      required: true
+      type: TEXT
+    - context: item
+      description: Color Brightness Point of your EgloConnect Thing.
+      label: Color Brightness
+      name: c_brightness
+      required: true
+      type: TEXT
+    - context: item
+      description: White Brightness Point of your EgloConnect Thing.
+      label: White Brightness
+      name: w_brightness
+      required: true
+      type: TEXT
+    - context: item
+      description: Color Point of your EgloConnect Thing.
+      label: Color
+      name: color
+      required: true
+      type: TEXT
+    - context: item
+      description: White Temperatur Point of your EgloConnect Thing.
+      label: White Temperatur
+      name: white_temp
+      required: true
+      type: TEXT
+  parameterGroups: []
+timestamp: Mar 27, 2021, 2:05:28 PM
+component: f7-card
+slots:
+  default:
+    - component: Label
+      config:
+        text: '=(props.title) ? props.title : "EgloConnect Bulb"'
+        style:
+          font-size: 20px
+          font-weight: bold
+          color: black
+          padding-bottom: 0px
+          padding-top: 15px
+          margin-top: 0px
+          margin-left: 25px
+    - component: oh-toggle-card
+      config:
+        title: Power
+        item: =props.power
+    - component: f7-card-content
+      slots:
+        default:
+          - component: f7-segmented
+            config:
+              raised: true
+              round: true
+              strong: true
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    text: COLOR
+                    action: variable
+                    actionVariable: state
+                    actionVariableValue: color
+                    active: =(vars.state === "color")
+                - component: oh-button
+                  config:
+                    text: WHITE
+                    action: variable
+                    actionVariable: state
+                    actionVariableValue: white
+                    active: =(vars.state === "white")
+          - component: oh-slider-card
+            config:
+              visible: =(vars.state === "color")
+              title: Brightness
+              item: =props.c_brightness
+              min: 0
+              max: 100
+              step: 1
+          - component: oh-slider-card
+            config:
+              visible: =(vars.state === "white")
+              title: Brightness
+              item: =props.w_brightness
+              min: 0
+              max: 100
+              step: 1
+          - component: oh-colorpicker-card
+            config:
+              visible: =(vars.state === "color")
+              title: Color
+              item: =props.color
+              modules:
+                - rgb-sliders
+          - component: oh-slider-card
+            config:
+              visible: =(vars.state === "white")
+              title: Temperature
+              item: =props.white_temp
+              min: 0
+              max: 100
+              step: 1
+
