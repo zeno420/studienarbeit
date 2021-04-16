@@ -1,0 +1,14 @@
+triggers:
+  - id: "1"
+    configuration:
+      itemName: BluetoothInterfaceyodaEGLOConnectDevice_Power
+      command: ON
+    type: core.ItemCommandTrigger
+conditions: []
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      itemName: BluetoothInterfaceyodaEGLOConnectDevice_Color
+      state: ON
+    type: core.ItemStateUpdateAction
