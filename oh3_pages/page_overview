@@ -1,0 +1,23 @@
+config:
+  label: Overview
+blocks: []
+masonry:
+  - component: oh-masonry
+    slots:
+      default:
+        - component: oh-input-card
+          config:
+            title: Message
+            name: mqtt
+            type: String
+            inputmode: text
+            placeholder: enter max 15 chars
+            sendButton: true
+            item: MQTTMessageBoard_Message
+            variable: message
+        - component: oh-colorpicker-card
+          config:
+            title: strip
+            item: LEDStrip_Color
+            modules:
+              - rgb-sliders

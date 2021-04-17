@@ -1,0 +1,32 @@
+triggers:
+  - id: "1"
+    configuration:
+      cronExpression: 0 * * * * *
+    type: timer.GenericCronTrigger
+conditions: []
+actions:
+  - inputs: {}
+    id: script
+    configuration:
+      type: application/vnd.openhab.dsl.rule
+      script: >-
+        var date = new java.util.Date
+
+        var sdf = new java.text.SimpleDateFormat("HH:mm")
+
+        var msg = ""
+
+
+
+        var split = MQTTMessageBoard_Message.state.toString.split(' - ')
+
+        if (split.size() > 1)
+          msg = sdf.format(date) + " - " + MQTTMessageBoard_Message.state.toString.split(' - ').get(1)
+        else
+          msg = sdf.format(date) + " - " + MQTTMessageBoard_Message.state.toString.split(' - ').get(0)
+
+
+        logInfo("Time_Message", "Time -> ")
+          
+        MQTTMessageBoard_Message.sendCommand(msg)
+    type: script.ScriptAction
