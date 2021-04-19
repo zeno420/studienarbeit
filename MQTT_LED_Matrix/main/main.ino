@@ -3,9 +3,8 @@
 #include <MD_MAX72xx.h>
 #include <SPI.h>
 
-
 #include "secrets.h"
-///////please enter your sensitive data in the secrets.h
+//please enter your sensitive data in the secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
 
@@ -17,13 +16,6 @@ char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as k
 
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
-
-// Use the MD_MAX72XX library to Print some text on the display
-//
-// Demonstrates the use of the library to print text.
-//
-// User can enter text on the serial monitor and this will display as a
-// message on the display.
 
 // Define the number of devices we have in the chain and the hardware interface
 // NOTE: These pin numbers will probably not work with your hardware and may
@@ -37,8 +29,6 @@ MqttClient mqttClient(wifiClient);
 
 // SPI hardware interface
 MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
-// Arbitrary pins
-//MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 // Text parameters
 #define CHAR_SPACING  1 // pixels between characters
@@ -47,8 +37,6 @@ MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 #define BUF_SIZE  75
 char message[BUF_SIZE] = "Hello!";
 
-
-//const char broker[] = "mqtt.fun4kids.org";
 const char broker[] = "test.mosquitto.org";
 int        port     = 1883;
 const char topic[]  = "oshls/display";
@@ -120,7 +108,7 @@ void printText(uint8_t modStart, uint8_t modEnd, char *pMsg)
 void setup() {
   
   //init displays
-    mx.begin();
+  mx.begin();
 
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
